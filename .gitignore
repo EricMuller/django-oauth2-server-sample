@@ -2,3 +2,6 @@ __pycache__
 env
 staticfiles
 **/*.pyc
+mysite/__pycache__
+bookmark/__pycache__
+user/__pycache__
