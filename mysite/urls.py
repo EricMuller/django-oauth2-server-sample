@@ -23,8 +23,9 @@ urlpatterns = [
         TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    url(r'^api/', include('bookmark.urls', namespace='bookmark')),
-    url(r'^api/', include('user.urls', namespace='user')),
     url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+
+    url(r'^api/v1/', include('bookmark.urls', namespace='boomark')),
+    url(r'^api/v1/', include('user.urls', namespace='user')),
 ]

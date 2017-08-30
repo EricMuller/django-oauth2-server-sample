@@ -5,4 +5,7 @@ urlpatterns = [
     url(r'^user/$',
         apiviews.UserListView.as_view(),
         name='users'),
+    url(r'^user/(?P<pk>[^/]+)/$',
+        apiviews.UserView.as_view(),
+        name='user'),
 ]

@@ -15,6 +15,7 @@ class BookmarkListView(generics.ListCreateAPIView):
     # How to filter
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('id',)
+    # required_scopes = ['music']
 
 
 class TagListView(generics.ListCreateAPIView):
