@@ -56,7 +56,7 @@ with Authorization grant type = Authorization code
 
 
 2. In browser in private mode (ctrl n)
-http://127.0.0.1:8000/o/authorize?response_type=code&client_id=zSOghQth8R1W4DksKvb4gTSGhRaguGnVo12ht1jQ&redirect_uri=http://127.0.0.1:8000/&scope=read&state=1234zyx
+http://127.0.0.1:8000/o/authorize?response_type=code&client_id=zSOghQth8R1W4DksKvb4gTSGhRaguGnVo12ht1jQ&redirect_uri=http://127.0.0.1:8000/&scope=profile&state=1234zyx
 
 connect with suer oauth2 pass oauth2oauth2
 

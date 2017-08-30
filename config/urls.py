@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 
-    url(r'^api/v1/', include('bookmark.urls', namespace='boomark')),
     url(r'^api/v1/', include('user.urls', namespace='user')),
+
 ]

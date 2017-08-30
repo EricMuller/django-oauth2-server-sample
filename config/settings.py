@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'corsheaders',
     'user',
-    'bookmark',
 ]
 
 MIDDLEWARE = [
@@ -57,13 +55,13 @@ MIDDLEWARE = [
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'mysite/templates').replace('\\', '/')
+            os.path.join(BASE_DIR, 'config/templates').replace('\\', '/')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -77,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -109,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -123,13 +120,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -146,29 +141,29 @@ OAUTH2_PROVIDER = {
     'ACCESS_TOKEN_EXPIRE_SECONDS': 86400 * 5,
     'SCOPES': {'read': 'Read scope',
                'write': 'Write scope',
-               'groups': 'Access to your groups'}
+               'groups': 'Access to your groups',
+               'profile': 'Access to your webmark profil '}
 }
-
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-LOGGING = {
-    'version': 1,
-    # ...
-    'handlers': {
+if DEBUG:
+    LOGGING = {
+        'version': 1,
         # ...
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+        'handlers': {
+            # ...
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+            },
         },
-    },
-    'loggers': {
-        # ....
-        'oauthlib': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
+        'loggers': {
+            'oauthlib': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
         },
-    },
-}
+    }
