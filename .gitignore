@@ -5,3 +5,5 @@ staticfiles
 mysite/__pycache__
 bookmark/__pycache__
 user/__pycache__
+**/*.log
+.vscode/tags
