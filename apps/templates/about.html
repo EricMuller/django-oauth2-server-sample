@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+{% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Oauth2 Authorization Server</h1>
+        <p class="lead">Some Awesome Applications use it</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div id="sec2" class="text-page">
+  <div class="container">
+     <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="text-center"><img class="img-circle centered" src="http://lorempixel.com/output/business-q-c-128-128-7.jpg" alt="profile pic"></div>
+        <p class="heavy text-center">Eric</p>
+        <h2>Back-end developer</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="sec3">
+  <div class="container">
+    <div class="row">
+      <div id="map-outer" class="col-md-12">
+        <div id="address" class="col-md-4">
+          <h2>Our Location</h2>
+          <address>
+            <strong>Edge Solutions Ltd.</strong><br>
+            Taj Mahal<br>
+            Agra<br>
+            Uttar Pradesh<br>
+            India - 282001<br>
+            <abbr>P:</abbr> +91 0562 222 6431
+          </address>
+        </div>
+        <div id="map-container" class="col-md-8"></div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+{% if object_list %}
+<div class="row" style="margin:10px">
+       {% for application in object_list %}
+        <div class="col-md-3">        
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                    <a href="{{ application.url }}" >
+                        <i class="fa fa-user  fa-fw"></i> {{ application.name }}
+                    </a>
+              </div>
+              <div class="panel-body">{{ application.description }}</div>
+            </div>
+          </div>  
+        </div>       
+       {% empty %}
+       <li>No public applications yet.</li>
+       {% endfor %}
+   
+</div>            
+{% endif %}
+
+{% endblock container %}
+
+
+{% block scripts %}
+{% endblock scripts %}
+
+
+
+
