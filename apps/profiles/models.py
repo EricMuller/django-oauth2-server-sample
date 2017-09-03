@@ -24,5 +24,8 @@ class BaseProfile(models.Model):
 
 @python_2_unicode_compatible
 class Profile(BaseProfile):
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('profiles:show', args=[str(self.slug)])
     def __str__(self):
         return "{}'s profile". format(self.user)

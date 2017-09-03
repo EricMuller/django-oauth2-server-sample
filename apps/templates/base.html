@@ -10,12 +10,9 @@
     <meta name="description" content="{% block description %}{% endblock description %}">
     <meta name="author" content="Arun Ravindran">
     <link rel="shortcut icon" href="{% static 'site/ico/favicon.ico' %}">
-
     <title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>
-
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <link href="{% static 'bootswatch/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Custom styles for this site -->
     {% block styles %}
     <link href="{% static 'site/css/main.css' %}" rel="stylesheet">
@@ -54,12 +51,14 @@
           <ul class="nav navbar-nav">
             {% block navbar-left %}{% endblock %}
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
             {% block navbar-right %}
               {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 {% endif %}
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle profile-menu" data-toggle="dropdown">
 			<img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
@@ -133,7 +132,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     {% block scripts %}
     {% endblock scripts %}
   </body>

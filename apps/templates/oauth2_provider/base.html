@@ -8,9 +8,7 @@
 {% block navbar-left %}
   {% include "_navbar.html" with active_link="about" %}
 {% endblock %}
-{% block styles %}
-        {{ block.super }}
-        <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">>-->
+{% block styles %}   {{ block.super }}
         <style>
         
         body {
@@ -53,7 +51,5 @@
       </div>
     </div>
 {% endblock container %}
-{% block scripts %}
-<script src="{% static 'site/js/site.js' %}"></script>
-{% endblock scripts %}
+
 

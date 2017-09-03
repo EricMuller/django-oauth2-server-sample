@@ -15,7 +15,8 @@ if "celery" in sys.argv[0]:
 
 # Django Debug Toolbar
 INSTALLED_APPS += (
-    'debug_toolbar', 'django_extensions',)
+    'debug_toolbar',
+    'django_extensions',)
 
 # Additional middleware introduced by debug toolbar
 MIDDLEWARE_CLASSES += (
@@ -27,7 +28,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Show thumbnail generation errors
 THUMBNAIL_DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "oauth2"]
 
 # Allow internal IPs for debugging
 INTERNAL_IPS = [

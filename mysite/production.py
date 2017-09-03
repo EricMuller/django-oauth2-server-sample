@@ -9,6 +9,9 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "163.172.48.36"]
 
+
+MEDIA_ROOT = "/www/oauth2/media"
+
 # Must mention ALLOWED_HOSTS in production!
 # ALLOWED_HOSTS = ["my_proj.com"]
 

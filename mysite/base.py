@@ -32,9 +32,17 @@ sys.path.append(str(APPS_DIR))
 STATICFILES_DIRS = (
     str(APPS_DIR.path('static')),
 )
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-MEDIA_ROOT = join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
+
+STATIC_ROOT = "/www/oauth2/static"
+
 MEDIA_URL = "/media/"
+
+# MEDIA_ROOT = "/www/oauth2/media"
+MEDIA_ROOT = join(BASE_DIR, 'media')
 
 TEMPLATES = [
     {
@@ -68,21 +76,22 @@ DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
     # 'django.contrib.humanize',
 )
 
 THIRD_PARTY_APPS = (
     'oauth2_provider',
+
     'rest_framework',
     'rest_framework_docs',
     'corsheaders',
+
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
-    'django_forms_bootstrap',
-    'django_admin_bootstrapped'
+    # 'django_admin_bootstrapped'
 )
 
 LOCAL_APPS = (
@@ -153,11 +162,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
