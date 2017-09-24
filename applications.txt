@@ -1,4 +1,4 @@
 accounts
-api.accounts
+profiles
 api.bookmarks
 oauth2_application
