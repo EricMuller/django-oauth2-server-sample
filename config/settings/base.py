@@ -19,7 +19,6 @@ from os.path import join
 from os.path import dirname
 
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(os.path.abspath(__file__)))
 
@@ -291,18 +290,8 @@ LOGGING = {
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': True
         },
-        'channels': {
-            'handlers': ['console', 'file-django'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-            'propagate': True
-        },
         'oauth2_provider': {
             'handlers': ['console', 'file-app'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-            'propagate': True
-        },
-        'authentification': {
-            'handlers': ['console', 'file-webmarks'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
             'propagate': True
         },
