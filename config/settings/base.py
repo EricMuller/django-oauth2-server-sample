@@ -213,29 +213,6 @@ OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_application.Application'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-if DEBUG:
-    LOGGING = {
-        'version': 1,
-        'handlers': {
-            'console': {
-                'level': 'DEBUG',
-                'class': 'logging.StreamHandler',
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['console'],
-                'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-                'propagate': True
-            },
-            'oauthlib': {
-                'handlers': ['console'],
-                'level': 'DEBUG',
-                'propagate': True,
-            },
-        },
-    }
-
 
 ACCOUNT_ACTIVATION_DAYS = 1
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
@@ -255,3 +232,85 @@ LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
 LOGIN_URL = reverse_lazy("accounts:login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
+
+
+# LOGGING CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+
+
+DJANGO_LOG_ROOT = env('DJANGO_LOG_ROOT', default=ROOT_DIR)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] [%(levelname)s] [%(module)s.%(funcName)s] [%(lineno)d] '
+            '[%(process)d %(thread)d] %(message)s'
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file-django': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': join(DJANGO_LOG_ROOT, 'django.log'),
+            'formatter': 'verbose'
+        },
+        'file-app': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': join(DJANGO_LOG_ROOT, 'webmarks.log'),
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file-django'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'propagate': True
+        },
+        'channels': {
+            'handlers': ['console', 'file-django'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'propagate': True
+        },
+        'oauth2_provider': {
+            'handlers': ['console', 'file-app'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'propagate': True
+        },
+        'authentification': {
+            'handlers': ['console', 'file-webmarks'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            'propagate': True
+        },
+        'django.request': {
+            # remove the one you don't want to use - no point having both.
+            'handlers': ['console', 'file-django'],
+            'propagate': False,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+        }
+    }
+}
