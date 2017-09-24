@@ -28,7 +28,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Show thumbnail generation errors
 THUMBNAIL_DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "oauth2"]
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
+                         HOST_NAME, 'localhost', '127.0.0.1'])
 
 # Allow internal IPs for debugging
 INTERNAL_IPS = [

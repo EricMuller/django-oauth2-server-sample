@@ -7,7 +7,7 @@ USER=webdev                                      	 # the user to run as
 GROUP=webdev                                     	 # the group to run as
 NUM_WORKERS=4                                        # how many worker processes should Gunicorn spawn
 NUM_THREAD=4                                         # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=mysite.settings.production   # which settings file should Django use
+DJANGO_SETTINGS_MODULE=config.settings.production   # which settings file should Django use
 DJANGO_WSGI_MODULE=mysite.wsgi                       # WSGI module name
 
 echo "Starting $NAME as `whoami` "

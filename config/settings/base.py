@@ -18,8 +18,7 @@ import sys
 from os.path import join
 from os.path import dirname
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(os.path.abspath(__file__)))
@@ -29,6 +28,14 @@ ROOT_DIR = dirname(environ.Path(__file__) - 2)
 APPS_DIR = os.path.join(ROOT_DIR, 'apps')
 
 sys.path.append(str(APPS_DIR))
+
+env = environ.Env()
+env_file = os.path.join(dirname(__file__), 'local.env')
+if os.path.exists(env_file):
+    environ.Env.read_env(str(env_file))
+
+
+HOST_NAME = env('HOST_NAME', default='127.0.0.1')
 
 STATICFILES_DIRS = (
     os.path.join(APPS_DIR, 'static'),
@@ -43,6 +50,21 @@ STATIC_ROOT = "/www/oauth2/static"
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = join(ROOT_DIR, 'media')
+
+# DEBUG
+# ------------------------------------------------------------------------------
+# SECURITY WARNING: don't run with debug turned on in production!
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
+
+# FIXTURE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See:
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
+FIXTURE_DIRS = (
+    join(APPS_DIR, 'fixtures'),
+)
+
 
 TEMPLATES = [
     {
@@ -118,9 +140,9 @@ MIDDLEWARE_CLASSES = [
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

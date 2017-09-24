@@ -1,0 +1,6 @@
+python-devel 
+postgresql-devel 
+postgresql-libs 
+gcc
+wget 
+sqlite-devel
