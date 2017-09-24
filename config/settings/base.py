@@ -36,19 +36,38 @@ if os.path.exists(env_file):
 
 HOST_NAME = env('HOST_NAME', default='127.0.0.1')
 
-STATICFILES_DIRS = (
-    os.path.join(APPS_DIR, 'static'),
-)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# STATIC FILE CONFIGURATION
+# ------------------------------------------------------------------------------
 STATIC_URL = '/static/'
 
-STATIC_ROOT = "/www/oauth2/static"
+DEFAULT_STATIC_ROOT = join(ROOT_DIR, 'staticfiles')
 
-MEDIA_URL = "/media/"
+STATIC_ROOT = env('STATIC_ROOT', default=DEFAULT_STATIC_ROOT)
 
+
+STATICFILES_DIRS = (
+    os.path.join(APPS_DIR, 'static'),
+)
+
+# See:
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+
+# MEDIA CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = join(ROOT_DIR, 'media')
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
+
 
 # DEBUG
 # ------------------------------------------------------------------------------
