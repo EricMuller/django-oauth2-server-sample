@@ -25,4 +25,4 @@ easy-thumbnails>=2.4.1
 
 
 drfdocs==0.0.11
-Werkzeug==0.12.2
+Werkzeug==0.15.3
